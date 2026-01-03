@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Success | College Symposium 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      background: #fff;
+      color: #333;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      max-width: 500px;
+      width: 90%;
+    }
+    h1 { color: #2a5298; }
+    p { font-size: 16px; margin: 20px 0; }
+    .details { background: #f4f6fb; padding: 20px; border-radius: 8px; text-align: left; }
+    .btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 16px;
+      background: #2a5298;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Payment Successful!</h1>
+    <p>Thank you for registering for the College Symposium 2026.</p>
+
+    <div class="details">
+      <p><strong>Payment ID:</strong> <span id="payment_id">—</span></p>
+      <p><strong>Order ID:</strong> <span id="order_id">—</span></p>
+      <p><strong>Signature:</strong> <span id="signature">—</span></p>
+    </div>
+
+    <p id="note">You can now close this page or return to the registration page.</p>
+
+    <a class="btn" id="backBtn" href="index.html">Back to Registration</a>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentId = urlParams.get("payment_id");
+    const orderId = urlParams.get("order_id");
+    const signature = urlParams.get("signature");
+
+    document.getElementById("payment_id").innerText = paymentId || '—';
+    document.getElementById("order_id").innerText = orderId || '—';
+    document.getElementById("signature").innerText = signature || '—';
+
+    // optional: show brief note when params are missing
+    if (!paymentId || !orderId) {
+      document.getElementById("note").innerText = "Payment details not present in URL. If you think payment succeeded, check the admin panel or contact support.";
+    }
+  </script>
+</body>
+</html>
